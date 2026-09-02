@@ -7,7 +7,10 @@ class SalePoint:
         self.__sellers = []
 
     def add_seller(self, seller: Seller):
-        self.__sellers.append(seller)
+        if self.__is_valid_seller(seller):
+            self.__sellers.append(seller)
+        else:
+            print('Ошибка. Переданный объект не является продавцом')
 
     def show_sellers(self):
         if not self.__sellers:
@@ -15,3 +18,9 @@ class SalePoint:
         else:
             for seller in self.__sellers:
                 print(f'Продавец на точке "{self.__title}": {seller.get_name()}')
+
+    def __is_valid_seller(self, seller: Seller) -> bool:
+        if isinstance(seller, Seller):
+            return True
+        else:
+            return False
