@@ -1,7 +1,7 @@
 from seller import Seller
 
 
-class PointOfSale:
+class SalePoint:
     def __init__(self, title: str):
         self.__title = title
         self.__sellers = []
