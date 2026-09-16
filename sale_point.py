@@ -26,5 +26,8 @@ class SalePoint:
         else:
             print('Такого продавца нет на торговой точке. Ошибка удаления')
 
+    def get_title(self):
+        return self.__title
+
     def __is_valid_seller(self, seller: Seller) -> bool:
         return isinstance(seller, Seller)
