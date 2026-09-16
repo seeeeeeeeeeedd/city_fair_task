@@ -19,5 +19,12 @@ class SalePoint:
             for seller in self.__sellers:
                 print(f'Продавец на точке "{self.__title}": {seller.get_name()}')
 
+    def delete_seller(self, seller: Seller):
+        if seller in self.__sellers:
+            self.__sellers.remove(seller)
+            print('Продавец удален из торговой точки')
+        else:
+            print('Такого продавца нет на торговой точке. Ошибка удаления')
+
     def __is_valid_seller(self, seller: Seller) -> bool:
         return isinstance(seller, Seller)
