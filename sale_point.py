@@ -3,7 +3,7 @@ from seller import Seller
 
 class SalePoint:
     def __init__(self, title: str):
-        self.__title = title
+        self.__title = title.capitalize()
         self.__sellers = []
 
     def add_seller(self, seller: Seller):
