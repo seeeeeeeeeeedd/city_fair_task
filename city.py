@@ -29,6 +29,12 @@ class City:
         for sale_point in self.__sale_points:
             sale_point.show_sellers()
 
+    def register_seller_on_point(self, seller: Seller, sale_point: SalePoint):
+        if seller in self.__sellers and sale_point in self.__sale_points:
+            sale_point.add_seller(seller)
+        else:
+            print('Продавец или точка не найдены в городе')
+
     def __is_valid_sale_point(self, sale_point: SalePoint) -> bool:
         return isinstance(sale_point, SalePoint)
 
