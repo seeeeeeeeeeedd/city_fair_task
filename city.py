@@ -49,6 +49,13 @@ class City:
                 return sale_point
         return None
 
+    def find_seller_by_name(self, name: str):
+        for seller in self.__sellers:
+            current_seller_name = seller.get_name()
+            if current_seller_name.lower() == name.lower():
+                return seller
+        return None
+
     def __is_valid_sale_point(self, sale_point: SalePoint) -> bool:
         return isinstance(sale_point, SalePoint)
 
