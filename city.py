@@ -20,4 +20,4 @@ class City:
             sale_point.show_sellers()
 
     def __is_valid_sale_point(self, sale_point: SalePoint) -> bool:
-        isinstance(sale_point, SalePoint)
+        return isinstance(sale_point, SalePoint)
