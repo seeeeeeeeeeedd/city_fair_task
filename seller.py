@@ -2,7 +2,7 @@ class Seller:
     def __init__(self, name: str):
         is_valid = self.__is_valid_name(name)
         if is_valid:
-            self.__name = name
+            self.__name = name.title()
         else:
             self.__name = 'Имя неизвестно'
 
