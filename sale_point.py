@@ -1,5 +1,6 @@
 from seller import Seller
 
+SELLER_NAMES_SEPARATOR = ", "
 
 class SalePoint:
     def __init__(self, title: str):
@@ -13,11 +14,13 @@ class SalePoint:
             print('Ошибка. Переданный объект не является продавцом')
 
     def show_sellers(self):
-        if not self.__sellers:
-            print('На торговой точке продавцов нет')
+        seller_names = []
+        for seller in self.__sellers:
+            seller_names.append(seller.get_name())
+        if not seller_names:
+            print(f'Точка: "{self.get_title()}", продавцы: на торговой точке продавцов нет')
         else:
-            for seller in self.__sellers:
-                print(f'Продавец на точке "{self.__title}": {seller.get_name()}')
+            print(f'Точка: "{self.get_title()}", продавцы: {SELLER_NAMES_SEPARATOR.join(seller_names)}')
 
     def delete_seller(self, seller: Seller):
         if seller in self.__sellers:
