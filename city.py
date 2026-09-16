@@ -35,6 +35,11 @@ class City:
         else:
             print('Продавец или точка не найдены в городе')
 
+    def show_all_sellers(self):
+        for seller in self.__sellers:
+            current_seller_name = seller.get_name()
+            print(f'Продавец: {current_seller_name}')
+
     def __is_valid_sale_point(self, sale_point: SalePoint) -> bool:
         return isinstance(sale_point, SalePoint)
 
