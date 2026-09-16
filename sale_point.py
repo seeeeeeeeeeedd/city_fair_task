@@ -20,7 +20,4 @@ class SalePoint:
                 print(f'Продавец на точке "{self.__title}": {seller.get_name()}')
 
     def __is_valid_seller(self, seller: Seller) -> bool:
-        if isinstance(seller, Seller):
-            return True
-        else:
-            return False
+        return isinstance(seller, Seller)
