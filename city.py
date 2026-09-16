@@ -26,6 +26,7 @@ class City:
 
     def show_city_info(self):
         print(f'Город: {self.__city_title}')
+
         for sale_point in self.__sale_points:
             sale_point.show_sellers()
 
