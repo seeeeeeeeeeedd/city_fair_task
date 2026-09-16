@@ -12,7 +12,13 @@ class City:
         is_valid_sale_point = self.__is_valid_sale_point(sale_point)
 
         if is_valid_sale_point:
-            self.__sale_points.append(sale_point)
+            new_sale_point_title = sale_point.get_title()
+            existing_sale_point = self.find_sale_point_by_title(new_sale_point_title)
+
+            if existing_sale_point:
+                print('Торговая точка с таким названием уже существует. Добавление невозможно')
+            else:
+                self.__sale_points.append(sale_point)
         else:
             print('Добавить точку не удалось. Некорректные данные')
 
