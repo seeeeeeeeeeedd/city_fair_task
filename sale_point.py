@@ -30,6 +30,19 @@ class SalePoint:
         else:
             print('Такого продавца нет на торговой точке. Ошибка удаления')
 
+    def sell_product(self, seller_name: str, product: str, quantity: int) -> tuple[bool, str]:
+        for seller in self.__sellers:
+            if seller.get_name().lower() == seller_name.lower():
+                success_result = seller.sell_product(product, quantity)
+
+                if success_result:
+                    return (True,
+                            f'Продавец "{seller.get_name()}" продал "{product}" '
+                            f'в количестве {quantity} на точке "{self.__title}"')
+                else:
+                    return (False, 'Недостаточно товара или товар отсутствует')
+        return (False, 'Продавец не найден на этой точке')
+
     def get_title(self):
         return self.__title
 
