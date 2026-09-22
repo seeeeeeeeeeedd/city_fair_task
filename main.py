@@ -40,7 +40,7 @@ while is_program_running:
             city.add_seller(new_seller)
         elif user_number == REGISTER_SELLER_ON_POINT_COMMAND:
             user_seller_name = input('Укажите имя продавца: ').strip().lower()
-            seller = city.find_seller_by_name(user_seller_name)
+            seller = city.find_seller_in_city(user_seller_name)
             if seller:
                 user_sale_point_title = input('Укажите название торговой точки: ').strip().lower()
                 sale_point = city.find_sale_point_by_title(user_sale_point_title)
@@ -57,7 +57,7 @@ while is_program_running:
             sale_point = city.find_sale_point_by_title(user_sale_point_title)
             if sale_point:
                 user_seller_name = input('Укажите имя продавца для удаления: ').strip().lower()
-                seller = city.find_seller_by_name(user_seller_name)
+                seller = city.find_seller_on_points(user_seller_name)
                 if seller:
                     sale_point.delete_seller(seller)
                 else:
@@ -72,7 +72,7 @@ while is_program_running:
             city.show_all_sellers()
         elif user_number == ADD_PRODUCT_TO_SELLER_COMMAND:
             user_seller_name = input('Укажите имя продавца: ').strip()
-            seller = city.find_seller_by_name(user_seller_name)
+            seller = city.find_seller_in_city(user_seller_name)
 
             if not seller:
                 print('Продавец не найден')
