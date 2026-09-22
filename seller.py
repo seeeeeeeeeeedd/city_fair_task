@@ -32,6 +32,18 @@ class Seller:
         else:
             print('Некорректные данные. Попробуйте снова')
 
+    def sell_product(self, product: str, quantity: int) -> bool:
+        product = product.capitalize()
+
+        if product not in self.__products:
+            return False
+
+        if self.__products[product] < quantity:
+            return False
+
+        self.__products[product] -= quantity
+        return True
+
     def get_products(self) -> dict:
         return self.__products
 
