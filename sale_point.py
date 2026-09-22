@@ -2,6 +2,7 @@ from seller import Seller
 
 SELLER_NAMES_SEPARATOR = ", "
 
+
 class SalePoint:
     def __init__(self, title: str):
         self.__title = title.capitalize()
@@ -31,6 +32,9 @@ class SalePoint:
 
     def get_title(self):
         return self.__title
+
+    def get_sellers(self):
+        return self.__sellers
 
     def __is_valid_seller(self, seller: Seller) -> bool:
         return isinstance(seller, Seller)
