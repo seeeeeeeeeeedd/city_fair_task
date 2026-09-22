@@ -6,11 +6,11 @@ class Seller:
         else:
             self.__name = 'Имя неизвестно'
 
+    def get_name(self) -> str:
+        return self.__name
+
     def __is_valid_name(self, name: str) -> bool:
         if isinstance(name, str):
             if name.strip():
                 return True
         return False
-
-    def get_name(self) -> str:
-        return self.__name
