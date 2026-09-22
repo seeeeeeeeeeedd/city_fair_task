@@ -43,9 +43,12 @@ class City:
             print('Продавец или точка не найдены в городе')
 
     def show_all_sellers(self):
-        for seller in self.__sellers:
-            current_seller_name = seller.get_name()
-            print(f'Продавец: {current_seller_name}')
+        for sale_point in self.__sale_points:
+            sellers = sale_point.get_sellers()
+
+            for seller in sellers:
+                current_seller_name = seller.get_name()
+                print(f'Продавец: {current_seller_name}')
 
     def find_sale_point_by_title(self, title: str):
         for sale_point in self.__sale_points:
