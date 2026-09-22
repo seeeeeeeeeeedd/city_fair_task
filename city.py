@@ -69,6 +69,17 @@ class City:
                     return seller
         return None
 
+    def sell_product_on_point(self, seller_name: str, point_title: str, product: str, quantity: int) -> tuple[
+        bool, str]:
+        sale_point = self.find_sale_point_by_title(point_title)
+
+        if not sale_point:
+            return (False, 'Точка не найдена')
+
+        result = sale_point.sell_product(seller_name, product, quantity)
+
+        return result
+
     def __is_valid_sale_point(self, sale_point: SalePoint) -> bool:
         return isinstance(sale_point, SalePoint)
 
