@@ -58,7 +58,7 @@ class City:
                 return sale_point
         return None
 
-    def find_seller_by_name(self, name: str):
+    def find_seller_on_points(self, name: str):
         for sale_point in self.__sale_points:
             sellers = sale_point.get_sellers()
 
@@ -67,6 +67,15 @@ class City:
 
                 if current_seller_name == name.lower():
                     return seller
+        return None
+
+    def find_seller_in_city(self, name: str):
+        for seller in self.__sellers:
+            current_seller_name = seller.get_name()
+
+            if current_seller_name.lower() == name.lower():
+                return seller
+
         return None
 
     def sell_product_on_point(self, seller_name: str, point_title: str, product: str, quantity: int) -> tuple[
