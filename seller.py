@@ -1,6 +1,9 @@
 class Seller:
     def __init__(self, name: str):
         is_valid = self.__is_valid_name(name)
+
+        self.__products = {}
+
         if is_valid:
             self.__name = name.title()
         else:
@@ -14,3 +17,38 @@ class Seller:
             if name.strip():
                 return True
         return False
+
+    def add_product(self, product: str, quantity: int):
+        product_valid = self.__is_product_valid(product)
+        quantity_valid = self.__is_quantity_valid(quantity)
+
+        if product_valid and quantity_valid:
+            product = product.capitalize()
+
+            if product not in self.__products:
+                self.__products[product] = quantity
+            else:
+                self.__products[product] += quantity
+        else:
+            print('Некорректные данные. Попробуйте снова')
+
+    def get_products(self) -> dict:
+        return self.__products
+
+    def __is_product_valid(self, product: str) -> bool:
+        if not isinstance(product, str):
+            return False
+
+        if not product.strip():
+            return False
+
+        return True
+
+    def __is_quantity_valid(self, quantity: int) -> bool:
+        if not isinstance(quantity, int):
+            return False
+
+        if quantity < 1:
+            return False
+
+        return True
