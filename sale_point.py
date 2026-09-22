@@ -1,9 +1,9 @@
 from seller import Seller
 
-SELLER_NAMES_SEPARATOR = ", "
-
 
 class SalePoint:
+    SELLER_NAMES_SEPARATOR = ', '
+
     def __init__(self, title: str):
         self.__title = title.capitalize()
         self.__sellers = []
@@ -21,7 +21,7 @@ class SalePoint:
         if not seller_names:
             print(f'Точка: "{self.get_title()}", продавцы: на торговой точке продавцов нет')
         else:
-            print(f'Точка: "{self.get_title()}", продавцы: {SELLER_NAMES_SEPARATOR.join(seller_names)}')
+            print(f'Точка: "{self.get_title()}", продавцы: {SalePoint.SELLER_NAMES_SEPARATOR.join(seller_names)}')
 
     def delete_seller(self, seller: Seller):
         if seller in self.__sellers:
