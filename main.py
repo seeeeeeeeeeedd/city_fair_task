@@ -11,11 +11,14 @@ commands = {
     '4': 'Удалить продавца с точки',
     '5': 'Показать все точки и продавцов',
     '6': 'Показать всех продавцов в городе',
+    '7': 'Добавить товар продавцу',
+    '8': 'Купить товар',
     '0': 'Выйти из программы'
 }
 
 (ADD_SALE_POINT_COMMAND, ADD_SELLER_COMMAND, REGISTER_SELLER_ON_POINT_COMMAND, DELETE_SELLER_FROM_POINT_COMMAND,
- SHOW_ALL_POINTS_COMMAND, SHOW_ALL_SELLERS_COMMAND, EXIT_COMMAND) = commands.keys()
+ SHOW_ALL_POINTS_COMMAND, SHOW_ALL_SELLERS_COMMAND, ADD_PRODUCT_TO_SELLER_COMMAND, BUY_PRODUCT_COMMAND,
+ EXIT_COMMAND) = commands.keys()
 
 is_program_running = True
 while is_program_running:
@@ -59,14 +62,41 @@ while is_program_running:
                     sale_point.delete_seller(seller)
                 else:
                     print()
-                    print('Такого продавца на точке нет')
+                    print('Ошибка. Такого продавца на точке нет')
             else:
                 print()
-                print('Такой точки не существует')
+                print('Ошибка. Такой точки не существует')
         elif user_number == SHOW_ALL_POINTS_COMMAND:
             city.show_city_info()
         elif user_number == SHOW_ALL_SELLERS_COMMAND:
             city.show_all_sellers()
+        elif user_number == ADD_PRODUCT_TO_SELLER_COMMAND:
+            user_seller_name = input('Укажите имя продавца: ').strip()
+            seller = city.find_seller_by_name(user_seller_name)
+
+            if not seller:
+                print('Продавец не найден')
+            else:
+                user_product = input('Укажите наименование товара: ').strip()
+                user_quantity = input('Укажите количество для добавления: ').strip()
+
+                if not user_quantity.isdigit():
+                    print('Ошибка. Количество должно быть числом')
+                else:
+                    seller.add_product(user_product, int(user_quantity))
+                    print('Товар успешно добавлен')
+        elif user_number == BUY_PRODUCT_COMMAND:
+            user_seller_name = input('Укажите имя продавца: ').strip()
+            user_point_title = input('Укажите название торговой точки: ').strip()
+            user_product = input('Укажите название товара: ').strip()
+            user_quantity = input('Укажите количество: ').strip()
+
+            if not user_quantity.isdigit():
+                print('Количество должно быть числом')
+            else:
+                success, message = city.sell_product_on_point(user_seller_name, user_point_title,
+                                                              user_product, int(user_quantity))
+                print(message)
         elif user_number == EXIT_COMMAND:
             is_program_running = False
             print()
