@@ -40,6 +40,7 @@ class City:
 
             if current_sale_point_title.lower() == title.lower():
                 return sale_point
+
         return None
 
     def find_seller_on_points(self, name: str):
