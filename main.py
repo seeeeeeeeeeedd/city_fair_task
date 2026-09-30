@@ -47,38 +47,22 @@ while is_program_running:
                     print('Продавец добавлен')
                 else:
                     print('Ошибка. Некорректное имя продавца')
-        elif user_number == REGISTER_SELLER_ON_POINT_COMMAND:
-            user_seller_name = input('Укажите имя продавца: ').strip().lower()
-            seller = city.find_seller_in_city(user_seller_name)
-            if seller:
-                user_sale_point_title = input('Укажите название торговой точки: ').strip().lower()
-                sale_point = city.find_sale_point_by_title(user_sale_point_title)
-
-                if sale_point:
-                    city.register_seller_on_point(seller, sale_point)
-                else:
-                    print('Точка не найдена')
-            else:
-                print('Продавец не найден')
-
         elif user_number == DELETE_SELLER_FROM_POINT_COMMAND:
             user_sale_point_title = input('Укажите название точки для поиска продавца: ').lower().strip()
             sale_point = city.find_sale_point_by_title(user_sale_point_title)
+
             if sale_point:
                 user_seller_name = input('Укажите имя продавца для удаления: ').strip().lower()
-                seller = city.find_seller_on_points(user_seller_name)
-                if seller:
-                    sale_point.delete_seller(seller)
+
+                if sale_point.delete_seller_by_name(user_seller_name):
+                    print('Продавец успешно удален')
                 else:
-                    print()
-                    print('Ошибка. Такого продавца на точке нет')
+                    print('Ошибка. Продавец не найден')
+
             else:
-                print()
-                print('Ошибка. Такой точки не существует')
+                print('Ошибка. Точка не найдена')
         elif user_number == SHOW_ALL_POINTS_COMMAND:
             city.show_city_info()
-        elif user_number == SHOW_ALL_SELLERS_COMMAND:
-            city.show_all_sellers()
         elif user_number == ADD_PRODUCT_TO_SELLER_COMMAND:
             user_seller_name = input('Укажите имя продавца: ').strip()
             seller = city.find_seller_in_city(user_seller_name)
