@@ -57,6 +57,13 @@ class SalePoint:
 
         return False
 
+    def find_seller_by_name(self, name: str) -> Seller | None:
+        for seller in self.__sellers:
+            if seller.get_name().lower() == name.lower():
+                return seller
+
+        return None
+
     def get_title(self):
         return self.__title
 
