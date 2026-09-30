@@ -85,17 +85,22 @@ while is_program_running:
                         current_seller.add_product(user_product, int(user_quantity))
                         print('Товар успешно добавлен')
         elif user_number == BUY_PRODUCT_COMMAND:
-            user_seller_name = input('Укажите имя продавца: ').strip()
             user_point_title = input('Укажите название торговой точки: ').strip()
-            user_product = input('Укажите название товара: ').strip()
-            user_quantity = input('Укажите количество: ').strip()
+            current_sale_point = city.find_sale_point_by_title(user_point_title)
 
-            if not user_quantity.isdigit():
-                print('Количество должно быть числом')
+            if not current_sale_point:
+                print('Ошибка. Торговой точки с таким названием не существует')
             else:
-                success, message = city.sell_product_on_point(user_seller_name, user_point_title,
+                user_seller_name = input('Укажите имя продавца: ').strip()
+                user_product = input('Укажите название товара: ').strip()
+                user_quantity = input('Укажите количество: ').strip()
+
+                if not user_quantity.isdigit():
+                    print('Количество должно быть числом')
+                else:
+                    success, message = city.sell_product_on_point(user_seller_name, user_point_title,
                                                               user_product, int(user_quantity))
-                print(message)
+                    print(message)
         elif user_number == EXIT_COMMAND:
             is_program_running = False
             print()
