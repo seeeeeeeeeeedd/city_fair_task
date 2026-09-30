@@ -52,7 +52,7 @@ class City:
 
                 if current_seller_name == name.lower():
                     return seller
-                
+
         return None
 
     def sell_product_on_point(self, seller_name: str, point_title: str, product: str, quantity: int) -> tuple[
