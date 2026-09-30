@@ -6,7 +6,6 @@ class City:
     def __init__(self, city_title: str):
         self.__city_title = city_title
         self.__sale_points = []
-        self.__sellers = []
 
     def add_sale_point(self, sale_point: SalePoint):
         is_valid_sale_point = self.__is_valid_sale_point(sale_point)
