@@ -49,6 +49,14 @@ class SalePoint:
 
         return False, 'Продавец не найден на этой точке'
 
+    def delete_seller_by_name(self, name: str) -> bool:
+        for seller in self.__sellers:
+            if seller.get_name().lower() == name.lower():
+                self.__sellers.remove(seller)
+                return True
+
+        return False
+
     def get_title(self):
         return self.__title
 
