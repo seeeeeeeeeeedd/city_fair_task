@@ -11,12 +11,11 @@ class SalePoint:
     def create_seller(self, name: str) -> bool:
         is_valid = self.__is_valid_seller_name(name)
 
-        if is_valid:
-            new_seller = Seller(name)
-            self.__sellers.append(new_seller)
-        else:
+        if not is_valid:
             return False
 
+        new_seller = Seller(name)
+        self.__sellers.append(new_seller)
         return True
 
     def show_sellers(self):
