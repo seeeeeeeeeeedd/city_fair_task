@@ -8,14 +8,20 @@ class SalePoint:
         self.__title = title.capitalize()
         self.__sellers = []
 
-    def add_seller(self, seller: Seller):
-        if self.__is_valid_seller(seller):
-            self.__sellers.append(seller)
+    def create_seller(self, name: str) -> bool:
+        is_valid = self.__is_valid_seller_name(name)
+
+        if is_valid:
+            new_seller = Seller(name)
+            self.__sellers.append(new_seller)
         else:
-            print('Ошибка. Переданный объект не является продавцом')
+            return False
+
+        return True
 
     def show_sellers(self):
         seller_names = []
+
         for seller in self.__sellers:
             seller_names.append(seller.get_name())
         if not seller_names:
@@ -40,8 +46,8 @@ class SalePoint:
                             f'Продавец "{seller.get_name()}" продал "{product}" '
                             f'в количестве {quantity} на точке "{self.__title}"')
                 else:
-                    return (False, 'Недостаточно товара или товар отсутствует')
-        return (False, 'Продавец не найден на этой точке')
+                    return False, 'Недостаточно товара или товар отсутствует'
+        return False, 'Продавец не найден на этой точке'
 
     def get_title(self):
         return self.__title
@@ -49,5 +55,10 @@ class SalePoint:
     def get_sellers(self):
         return self.__sellers
 
-    def __is_valid_seller(self, seller: Seller) -> bool:
-        return isinstance(seller, Seller)
+    def __is_valid_seller_name(self, name: str) -> bool:
+        if not isinstance(name, str):
+            return False
+        if not name.strip():
+            return False
+
+        return True
