@@ -28,13 +28,6 @@ class SalePoint:
         else:
             print(f'Точка: "{self.get_title()}", продавцы: {SalePoint.SELLER_NAMES_SEPARATOR.join(seller_names)}')
 
-    def delete_seller(self, seller: Seller):
-        if seller in self.__sellers:
-            self.__sellers.remove(seller)
-            print('Продавец удален из торговой точки')
-        else:
-            print('Такого продавца нет на торговой точке. Ошибка удаления')
-
     def sell_product(self, seller_name: str, product: str, quantity: int) -> tuple[bool, str]:
         for seller in self.__sellers:
             if seller.get_name().lower() == seller_name.lower():
