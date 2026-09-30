@@ -26,32 +26,12 @@ class City:
         for sale_point in self.__sale_points:
             sale_point.show_sellers()
 
-    def show_all_sellers(self):
-        for sale_point in self.__sale_points:
-            sellers = sale_point.get_sellers()
-
-            for seller in sellers:
-                current_seller_name = seller.get_name()
-                print(f'Продавец: {current_seller_name}')
-
     def find_sale_point_by_title(self, title: str):
         for sale_point in self.__sale_points:
             current_sale_point_title = sale_point.get_title()
 
             if current_sale_point_title.lower() == title.lower():
                 return sale_point
-
-        return None
-
-    def find_seller_on_points(self, name: str):
-        for sale_point in self.__sale_points:
-            sellers = sale_point.get_sellers()
-
-            for seller in sellers:
-                current_seller_name = seller.get_name().lower()
-
-                if current_seller_name == name.lower():
-                    return seller
 
         return None
 
