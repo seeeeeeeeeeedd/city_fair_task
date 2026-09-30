@@ -26,7 +26,7 @@ class City:
         for sale_point in self.__sale_points:
             sale_point.show_sellers()
 
-    def find_sale_point_by_title(self, title: str):
+    def find_sale_point_by_title(self, title: str) -> SalePoint | None:
         for sale_point in self.__sale_points:
             current_sale_point_title = sale_point.get_title()
 
