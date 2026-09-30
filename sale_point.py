@@ -2,10 +2,10 @@ from seller import Seller
 
 
 class SalePoint:
-    SELLER_NAMES_SEPARATOR = ', '
 
     def __init__(self, title: str):
         self.__title = title.capitalize()
+        self.__seller_names_separator = ', '
         self.__sellers = []
 
     def create_seller(self, name: str) -> bool:
@@ -26,7 +26,7 @@ class SalePoint:
         if not seller_names:
             print(f'Точка: "{self.get_title()}", продавцы: на торговой точке продавцов нет')
         else:
-            print(f'Точка: "{self.get_title()}", продавцы: {SalePoint.SELLER_NAMES_SEPARATOR.join(seller_names)}')
+            print(f'Точка: "{self.get_title()}", продавцы: {self.__seller_names_separator.join(seller_names)}')
 
     def sell_product(self, seller_name: str, product: str, quantity: int) -> tuple[bool, str]:
         for seller in self.__sellers:
