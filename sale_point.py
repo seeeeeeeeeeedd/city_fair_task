@@ -46,6 +46,7 @@ class SalePoint:
                             f'в количестве {quantity} на точке "{self.__title}"')
                 else:
                     return False, 'Недостаточно товара или товар отсутствует'
+
         return False, 'Продавец не найден на этой точке'
 
     def get_title(self):
