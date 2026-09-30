@@ -8,10 +8,10 @@ class Seller:
         return self.__name
 
     def add_product(self, product: str, quantity: int):
-        product_valid = self.__is_product_valid(product)
-        quantity_valid = self.__is_quantity_valid(quantity)
+        is_product_valid = self.__is_product_valid(product)
+        is_quantity_valid = self.__is_quantity_valid(quantity)
 
-        if product_valid and quantity_valid:
+        if is_product_valid and is_quantity_valid:
             product = product.capitalize()
 
             if product not in self.__products:
