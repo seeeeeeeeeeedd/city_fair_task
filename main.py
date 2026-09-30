@@ -64,20 +64,26 @@ while is_program_running:
         elif user_number == SHOW_ALL_POINTS_COMMAND:
             city.show_city_info()
         elif user_number == ADD_PRODUCT_TO_SELLER_COMMAND:
-            user_seller_name = input('Укажите имя продавца: ').strip()
-            seller = city.find_seller_in_city(user_seller_name)
+            user_sale_point_title = input('Укажите название точки: ').strip().lower()
+            current_sale_point = city.find_sale_point_by_title(user_sale_point_title)
 
-            if not seller:
-                print('Продавец не найден')
+            if not current_sale_point:
+                print('Ошибка. Точки с таким названием не существует')
             else:
-                user_product = input('Укажите наименование товара: ').strip()
-                user_quantity = input('Укажите количество для добавления: ').strip()
+                user_seller_name = input('Укажите имя продавца: ').strip()
+                current_seller = current_sale_point.find_seller_by_name(user_seller_name)
 
-                if not user_quantity.isdigit():
-                    print('Ошибка. Количество должно быть числом')
+                if not current_seller:
+                    print('Продавец не найден')
                 else:
-                    seller.add_product(user_product, int(user_quantity))
-                    print('Товар успешно добавлен')
+                    user_product = input('Укажите наименование товара: ').strip()
+                    user_quantity = input('Укажите количество товаров для добавления: ').strip()
+
+                    if not user_quantity.isdigit():
+                        print('Ошибка. Количество должно быть числом')
+                    else:
+                        current_seller.add_product(user_product, int(user_quantity))
+                        print('Товар успешно добавлен')
         elif user_number == BUY_PRODUCT_COMMAND:
             user_seller_name = input('Укажите имя продавца: ').strip()
             user_point_title = input('Укажите название торговой точки: ').strip()
