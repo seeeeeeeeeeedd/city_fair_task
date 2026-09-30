@@ -1,22 +1,11 @@
 class Seller:
     def __init__(self, name: str):
-        is_valid = self.__is_valid_name(name)
 
         self.__products = {}
-
-        if is_valid:
-            self.__name = name.title()
-        else:
-            self.__name = 'Имя неизвестно'
+        self.__name = name.title()
 
     def get_name(self) -> str:
         return self.__name
-
-    def __is_valid_name(self, name: str) -> bool:
-        if isinstance(name, str):
-            if name.strip():
-                return True
-        return False
 
     def add_product(self, product: str, quantity: int):
         product_valid = self.__is_product_valid(product)
@@ -42,6 +31,7 @@ class Seller:
             return False
 
         self.__products[product] -= quantity
+
         return True
 
     def get_products(self) -> dict:
