@@ -61,7 +61,7 @@ class SalePoint:
         return self.__title
 
     def get_sellers(self):
-        return self.__sellers
+        return list(self.__sellers)
 
     def __is_valid_seller_name(self, name: str) -> bool:
         if not isinstance(name, str):
