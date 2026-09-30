@@ -35,7 +35,7 @@ class Seller:
         return True
 
     def get_products(self) -> dict:
-        return self.__products
+        return dict(self.__products)
 
     def __is_product_valid(self, product: str) -> bool:
         if not isinstance(product, str):
