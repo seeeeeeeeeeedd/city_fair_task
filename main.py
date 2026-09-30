@@ -1,4 +1,3 @@
-from seller import Seller
 from sale_point import SalePoint
 from city import City
 
@@ -6,21 +5,20 @@ city = City('Краснодар')
 
 commands = {
     '1': 'Добавить торговую точку',
-    '2': 'Добавить продавца',
-    '3': 'Зарегистрировать продавца на точку',
-    '4': 'Удалить продавца с точки',
-    '5': 'Показать все точки и продавцов',
-    '6': 'Показать всех продавцов в городе',
-    '7': 'Добавить товар продавцу',
-    '8': 'Купить товар',
+    '2': 'Добавить продавца на точку',
+    '3': 'Удалить продавца с точки',
+    '4': 'Показать все точки и продавцов',
+    '5': 'Добавить товар продавцу',
+    '6': 'Купить товар',
     '0': 'Выйти из программы'
 }
 
-(ADD_SALE_POINT_COMMAND, ADD_SELLER_COMMAND, REGISTER_SELLER_ON_POINT_COMMAND, DELETE_SELLER_FROM_POINT_COMMAND,
- SHOW_ALL_POINTS_COMMAND, SHOW_ALL_SELLERS_COMMAND, ADD_PRODUCT_TO_SELLER_COMMAND, BUY_PRODUCT_COMMAND,
+(ADD_SALE_POINT_COMMAND, ADD_SELLER_COMMAND, DELETE_SELLER_FROM_POINT_COMMAND,
+ SHOW_ALL_POINTS_COMMAND, ADD_PRODUCT_TO_SELLER_COMMAND, BUY_PRODUCT_COMMAND,
  EXIT_COMMAND) = commands.keys()
 
 is_program_running = True
+
 while is_program_running:
 
     print()
@@ -35,9 +33,20 @@ while is_program_running:
             new_sale_point = SalePoint(user_sale_point)
             city.add_sale_point(new_sale_point)
         elif user_number == ADD_SELLER_COMMAND:
-            user_seller_name = input('Укажите имя продавца: ').strip().lower()
-            new_seller = Seller(user_seller_name)
-            city.add_seller(new_seller)
+            user_sale_point_title = input('Укажите название торговой точки: ').strip().lower()
+
+            current_sale_point = city.find_sale_point_by_title(user_sale_point_title)
+
+            if not current_sale_point:
+                print('Ошибка. Точка с таким названием не найдена')
+            else:
+                user_seller_name = input('Укажите имя продавца: ').strip().lower()
+                success = current_sale_point.create_seller(user_seller_name)
+
+                if success:
+                    print('Продавец добавлен')
+                else:
+                    print('Ошибка. Некорректное имя продавца')
         elif user_number == REGISTER_SELLER_ON_POINT_COMMAND:
             user_seller_name = input('Укажите имя продавца: ').strip().lower()
             seller = city.find_seller_in_city(user_seller_name)
