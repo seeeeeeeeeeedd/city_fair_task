@@ -57,10 +57,10 @@ class SalePoint:
 
         return None
 
-    def get_title(self):
+    def get_title(self) -> str:
         return self.__title
 
-    def get_sellers(self):
+    def get_sellers(self) -> list[Seller]:
         return list(self.__sellers)
 
     def __is_valid_seller_name(self, name: str) -> bool:
